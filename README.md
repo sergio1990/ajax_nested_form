@@ -1,8 +1,10 @@
-# AjaxNestedForm
+AjaxNestedForm
+==============
 
-TODO: Write a gem description
+This gem provides adding and removing nested model fields dynamically through JavaScript using jQuery. It may using for Rails 3.1+ with assets pipeline
 
-## Installation
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
@@ -16,11 +18,47 @@ Or install it yourself as:
 
     $ gem install ajax_nested_form
 
-## Usage
+Usage
+-----
 
-TODO: Write usage instructions here
+### Javascript
+	
+Add necessary javascript file to app/assets/javascripts/application.js
 
-## Contributing
+``` javascript
+//= require ajax_nested_form
+```
+
+### Using ActionView helper methods
+
+For creating link to add nested model fields use next syntax
+
+``` ruby
+link_to_add_fields "LinkText", form_builder_instance, :association_name, "container_for_adding_fields", "position_for_adding"
+```
+
+Available positions for adding are "first" and "last". Last is used by default.
+
+Sample
+
+``` ruby
+link_to_add_fields "Add list", f, :lists, "#lists-container", "first"
+```
+
+For creating link to destroy nested model fields use following code
+
+``` ruby
+link_to_remove_fields "Remove", form_builder_instance, "nested_model_fields_container"
+```
+
+Sample
+
+``` ruby
+link_to_remove_fields "Remove", f, ".list-fields"
+```
+
+Contributing
+------------
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
