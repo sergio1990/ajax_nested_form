@@ -3,7 +3,7 @@ module AjaxNestedForm
 		module ViewHelper
 
 			def link_to_remove_fields(name, f, container)
-			  f.hidden_field(:_destroy) + link_to_function(name, "AjaxNestedForm.removeFields(this, \"#{container}\")")
+			  f.hidden_field(:_destroy) + link_to_function(name, "AjaxNestedForm.removeFields(this, \"#{container}\")".html_safe)
 			end
 
 			def link_to_add_fields(name, f, association, container, position = "last")
@@ -11,7 +11,7 @@ module AjaxNestedForm
 				fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
 				  render(association.to_s.singularize + "_fields", :f => builder)
 				end
-				link_to_function(name, h("AjaxNestedForm.addFields(this, \"#{association}\", \"#{escape_javascript(fields)}\", \"#{container}\", \"#{position}\")"))
+				link_to_function(name, "AjaxNestedForm.addFields(this, \"#{association}\", \"#{escape_javascript(fields)}\", \"#{container}\", \"#{position}\")".html_safe)
 			end
 
 		end
