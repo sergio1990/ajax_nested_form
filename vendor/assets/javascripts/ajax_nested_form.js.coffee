@@ -3,7 +3,7 @@ window.AjaxNestedForm = {}
 class @AjaxNestedForm
 
 	@removeFields: (link, container) ->
-		$(link).prev("input[type=hidden]").value = "1"
+		$(link).prev("input[type=hidden]").val("true")
 		$(link).closest(container).hide()
 		return
 
